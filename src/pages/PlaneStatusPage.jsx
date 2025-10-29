@@ -3,14 +3,22 @@ import { Box } from '@mui/material';
 import { Typography } from '@mui/material';
 import { Button } from '@mui/material';
 import { Container } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { TextField } from '@mui/material';
+import { Paper } from '@mui/material';
+import ConnectingAirportsIcon from '@mui/icons-material/ConnectingAirports';
 
-//=================================================================
+//=====================================================================================
 
-const FlightsPage = () => { //YAĞIZ ->>> İçerik ve Mantık
+const PlaneStatusPage = () => {
+  // Buraya state ve sorgulama mantığı eklenecek
+  const handleStatusCheck = () => {
+    console.log("Uçuş durumu sorgulanıyor...");
+    // API isteği burada yapılacak
+  };
+
   return (
     <Box
-      sx={{
+        sx={{
         backgroundImage: 'url(/hakkımda/hakkımda-xs.jpg)', 
         '@media (min-width: 768px)': { 
           backgroundImage: 'url(/hakkımda/hakkımda-sm.jpg)',
@@ -31,35 +39,47 @@ const FlightsPage = () => { //YAĞIZ ->>> İçerik ve Mantık
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        py: { base: 4, md: 8 }, // xs yerine base kullanıldı (MUI Grid v2)
+        py: { base: 4, md: 8 },
         px: 2,
       }}
     >
-      <Container maxWidth="md"> {/* İçerik alanı daha geniş olabilir */}
-        <Box
+      <Container maxWidth="sm">
+        <Paper 
+          elevation={6}
           sx={{
-            backgroundColor: 'rgba(255, 255, 255, 0.9)',
-            backdropFilter: 'blur(5px)',
+            backgroundColor: 'rgba(255, 255, 255, 0.95)',
+            backdropFilter: 'blur(8px)',
             borderRadius: 3,
             p: 4,
             textAlign: 'center',
-            boxShadow: 6,
           }}
         >
+          <ConnectingAirportsIcon sx={{ fontSize: 60, color: 'primary.main', mb: 2 }} />
           <Typography variant="h3" component="h1" gutterBottom sx={{ fontWeight: 'bold' }}>
-            Uçuş Arama Sonuçları
+            Uçuş Durumu
           </Typography>
           <Typography variant="body1" color="text.secondary" sx={{ mb: 3 }}>
-            (Kişi 2 burayı dolduracak: Filtrelenen uçuşlar listelenecek.)
+            Uçuş numaranızı girerek (örn: TK1234) güncel durumu kontrol edebilirsiniz.
           </Typography>
-          <Button variant="contained" component={Link} to="/">
-            Ana Sayfaya Dön
+          <TextField
+            fullWidth
+            label="Uçuş Numarası"
+            variant="outlined"
+            sx={{ mb: 2 }}
+          />
+          <Button 
+            variant="contained" 
+            size="large" 
+            fullWidth
+            onClick={handleStatusCheck}
+          >
+            Sorgula
           </Button>
-          {/* YAĞIZ --->  uçuş listesini ve detay butonlarını vs vs neler lazımsa */}
-        </Box>
+          {/* Uçuş durumu sonucu (loading/error/data) buraya gelecek ----> Yağız */} 
+        </Paper>
       </Container>
     </Box>
   );
 };
 
-export default FlightsPage;
+export default PlaneStatusPage;
