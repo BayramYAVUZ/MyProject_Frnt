@@ -31,7 +31,7 @@ const FlightsPage = () => { //YAĞIZ ->>> İçerik ve Mantık
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        py: { base: 4, md: 8 }, // xs yerine base kullanıldı (MUI Grid v2)
+        py: { base: 4, md: 8 }, 
         px: 2,
       }}
     >
